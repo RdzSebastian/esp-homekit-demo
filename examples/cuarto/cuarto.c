@@ -17,8 +17,8 @@
 #define button2   12    //D6    
 #define button3   13    //D7
 
-bool state1 = false;
-bool state2 = false;
+bool state1 = true;
+bool state2 = true;
 
 
 // ----------------------------------------------------   Inicializacion de wifi  -------------------------------------------------
@@ -152,8 +152,8 @@ homekit_accessory_t *accessories[] = {
             NULL
         }),
         HOMEKIT_SERVICE(LIGHTBULB, .primary=true, .characteristics=(homekit_characteristic_t*[]){
-            HOMEKIT_CHARACTERISTIC(NAME, "Relay 1"),
-            HOMEKIT_CHARACTERISTIC(ON, true,
+            HOMEKIT_CHARACTERISTIC(NAME, "Luz"),
+            HOMEKIT_CHARACTERISTIC(ON, false,
             .getter=relay1_on_get,
             .setter=relay1_on_set
             ),
@@ -172,8 +172,8 @@ homekit_accessory_t *accessories[] = {
             NULL
         }),
         HOMEKIT_SERVICE(LIGHTBULB, .primary=true, .characteristics=(homekit_characteristic_t*[]){
-            HOMEKIT_CHARACTERISTIC(NAME, "Relay 2"),
-            HOMEKIT_CHARACTERISTIC(ON, true,
+            HOMEKIT_CHARACTERISTIC(NAME, "Luz"),
+            HOMEKIT_CHARACTERISTIC(ON, false,
             .getter=relay2_on_get,
             .setter=relay2_on_set
             ),
