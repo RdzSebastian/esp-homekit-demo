@@ -199,5 +199,6 @@ void user_init(void) {
 
     wifi_init();
     relay1_init();
+    relay2_init();
     homekit_server_init(&config);
 }
