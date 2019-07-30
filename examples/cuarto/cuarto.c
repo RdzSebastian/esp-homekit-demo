@@ -153,7 +153,7 @@ homekit_accessory_t *accessories[] = {
         }),
         HOMEKIT_SERVICE(LIGHTBULB, .primary=true, .characteristics=(homekit_characteristic_t*[]){
             HOMEKIT_CHARACTERISTIC(NAME, "Relay 1"),
-            HOMEKIT_CHARACTERISTIC(ON, false,
+            HOMEKIT_CHARACTERISTIC(ON, true,
             .getter=relay1_on_get,
             .setter=relay1_on_set
             ),
@@ -173,7 +173,7 @@ homekit_accessory_t *accessories[] = {
         }),
         HOMEKIT_SERVICE(LIGHTBULB, .primary=true, .characteristics=(homekit_characteristic_t*[]){
             HOMEKIT_CHARACTERISTIC(NAME, "Relay 2"),
-            HOMEKIT_CHARACTERISTIC(ON, false,
+            HOMEKIT_CHARACTERISTIC(ON, true,
             .getter=relay2_on_get,
             .setter=relay2_on_set
             ),
