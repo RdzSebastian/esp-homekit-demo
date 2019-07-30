@@ -20,16 +20,6 @@
 bool state1 = false;
 bool state2 = false;
 
-// -----------------------------------------------------------   MAIN   ----------------------------------------------------------
-
-void user_init(void) {
-    uart_set_baud(0, 115200);
-
-    wifi_init();
-    relay1_init();
-    homekit_server_init(&config);
-}
-
 
 // ----------------------------------------------------   Inicializacion de wifi  -------------------------------------------------
 
@@ -46,20 +36,14 @@ static void wifi_init() {
 
 // --------------------------------------------------------   Logica de Relay1   -----------------------------------------------------
 
-void relay1_init() {                                      
-    gpio_enable(Relay1, GPIO_OUTPUT);
-    relay1_write(state1);
-}
-
-
 void relay1_write(bool on) {                             
     gpio_write(Relay1, on ? 0 : 1);
 }
 
 
-void relay1_identify(homekit_value_t _value) {
-    printf("Relay 1 identify\n");
-    xTaskCreate(relay1_identify_task, "Relay Identify", 128, NULL, 2, NULL);
+void relay1_init() {                                      
+    gpio_enable(Relay1, GPIO_OUTPUT);
+    relay1_write(state1);
 }
 
 
@@ -77,6 +61,12 @@ void relay1_identify_task(void *_args) {
 
     relay1_write(state1);
     vTaskDelete(NULL);
+}
+
+
+void relay1_identify(homekit_value_t _value) {
+    printf("Relay 1 identify\n");
+    xTaskCreate(relay1_identify_task, "Relay Identify", 128, NULL, 2, NULL);
 }
 
 
@@ -109,12 +99,6 @@ void relay2_init() {
 }
 
 
-void relay2_identify(homekit_value_t _value) {
-    printf("Relay 2 identify\n");
-    xTaskCreate(relay2_identify_task, "Relay Identify", 128, NULL, 2, NULL);
-}
-
-
 void relay2_identify_task(void *_args) {
     for (int i=0; i<3; i++) {
         for (int j=0; j<2; j++) {
@@ -129,6 +113,12 @@ void relay2_identify_task(void *_args) {
 
     relay2_write(state2);
     vTaskDelete(NULL);
+}
+
+
+void relay2_identify(homekit_value_t _value) {
+    printf("Relay 2 identify\n");
+    xTaskCreate(relay2_identify_task, "Relay Identify", 128, NULL, 2, NULL);
 }
 
 
@@ -149,11 +139,6 @@ void relay2_on_set(homekit_value_t value) {
 
 
 // ------------------------------------------------   Configuracion del server de Homekit   ------------------------------------------
-
-homekit_server_config_t config = {
-    .accessories = accessories,
-    .password = "111-11-111"
-};
 
 homekit_accessory_t *accessories[] = {
     HOMEKIT_ACCESSORY(.id=1, .category=homekit_accessory_category_lightbulb, .services=(homekit_service_t*[]){
@@ -199,3 +184,20 @@ homekit_accessory_t *accessories[] = {
     
     NULL
 };
+
+
+homekit_server_config_t config = {
+    .accessories = accessories,
+    .password = "111-11-111"
+};
+
+
+// -----------------------------------------------------------   MAIN   ----------------------------------------------------------
+
+void user_init(void) {
+    uart_set_baud(0, 115200);
+
+    wifi_init();
+    relay1_init();
+    homekit_server_init(&config);
+}
