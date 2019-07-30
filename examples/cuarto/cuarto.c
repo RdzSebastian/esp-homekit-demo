@@ -17,8 +17,8 @@
 #define button2   12    //D6    
 #define button3   13    //D7
 
-bool state1 = true;
-bool state2 = true;
+bool state1 = false;
+bool state2 = false;
 
 
 // ----------------------------------------------------   Inicializacion de wifi  -------------------------------------------------
@@ -36,12 +36,12 @@ static void wifi_init() {
 
 // --------------------------------------------------------   Logica de Relay1   -----------------------------------------------------
 
-void relay1_write(bool on) {                             
-    gpio_write(Relay1, on ? 0 : 1);
+void relay1_write(bool on) {
+    gpio_write(Relay1, on ? 1 : 0);
 }
 
 
-void relay1_init() {                                      
+void relay1_init() {
     gpio_enable(Relay1, GPIO_OUTPUT);
     relay1_write(state1);
 }
@@ -89,7 +89,7 @@ void relay1_on_set(homekit_value_t value) {
 // --------------------------------------------------------   Logica de Relay2   -----------------------------------------------------
 
 void relay2_write(bool on) {
-    gpio_write(Relay2, on ? 0 : 1);
+    gpio_write(Relay2, on ? 1 : 0);
 }
 
 
