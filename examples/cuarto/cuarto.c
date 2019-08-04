@@ -138,6 +138,22 @@ void relay2_on_set(homekit_value_t value) {
 }
 
 
+// ----------------------------------------------------------   Logica boton 1   -----------------------------------------------------
+
+void button1_init() {
+    gpio_enable(Button1, GPIO_INPUT);
+    relay1_write(state1);
+}
+
+
+// ----------------------------------------------------------   Logica boton 2   -----------------------------------------------------
+
+void button2_init() {
+    gpio_enable(Button2, GPIO_INPUT);
+    relay2_write(state2);
+}
+
+
 // ------------------------------------------------   Configuracion del server de Homekit   ------------------------------------------
 
 homekit_accessory_t *accessories[] = {
@@ -200,5 +216,7 @@ void user_init(void) {
     wifi_init();
     relay1_init();
     relay2_init();
+    button1_init();
+    button2_init();
     homekit_server_init(&config);
 }
