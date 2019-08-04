@@ -279,13 +279,12 @@ void loop()
 {
   
     if (digitalRead(button1)){		//cambia el estado del Relay1 de la luz en caso de tocar el boton de arriba
-
-	    relay1_write(Relay1, state1);
+	    relay1_write(state1);
 	    delay(250);
 	}
 	  
    	if (digitalRead(button2)){		//cambia el estado del estado2 de la luz en caso de tocar el boton de arriba
-	    relay2_write(Relay2, state2);
+	    relay2_write(state2);
 	    delay(250);
 	}
 }
