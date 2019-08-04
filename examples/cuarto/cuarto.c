@@ -139,7 +139,7 @@ void relay2_on_set(homekit_value_t value) {
 
 
 // ----------------------------------------------------------   Logica boton 1   -----------------------------------------------------
-/*
+
 void button1_init() {
     gpio_enable(button1, GPIO_INPUT);
     relay1_write(state1);
@@ -166,7 +166,7 @@ void button2_on_set(homekit_value_t value) {
     state2 = value.bool_value;
     relay2_write(state2);
 }
-*/
+
 // ------------------------------------------------   Configuracion del server de Homekit   ------------------------------------------
 
 homekit_accessory_t *accessories[] = {
@@ -210,7 +210,7 @@ homekit_accessory_t *accessories[] = {
         }),
         NULL
     }),
-    /*HOMEKIT_ACCESSORY(.id=3, .category=homekit_accessory_category_programmable_switch, .services=(homekit_service_t*[]){
+    HOMEKIT_ACCESSORY(.id=3, .category=homekit_accessory_category_programmable_switch, .services=(homekit_service_t*[]){
         HOMEKIT_SERVICE(ACCESSORY_INFORMATION, .characteristics=(homekit_characteristic_t*[]){
             HOMEKIT_CHARACTERISTIC(NAME, "Cuarto"),
             HOMEKIT_CHARACTERISTIC(MANUFACTURER, "Estonian Port"),
@@ -249,7 +249,7 @@ homekit_accessory_t *accessories[] = {
             NULL
         }),
         NULL
-    }),*/
+    }),
     
     NULL
 };
@@ -269,12 +269,12 @@ void user_init(void) {
     wifi_init();
     relay1_init();
     relay2_init();
-    //button1_init();
-    //button2_init();
+    button1_init();
+    button2_init();
     homekit_server_init(&config);
 }
 
-
+/*
 void loop()
 {
   
@@ -287,4 +287,4 @@ void loop()
 	    relay2_write(state2);
 	    delay(250);
 	}
-}
+}*/
