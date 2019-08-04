@@ -141,7 +141,7 @@ void relay2_on_set(homekit_value_t value) {
 // ----------------------------------------------------------   Logica boton 1   -----------------------------------------------------
 
 void button1_init() {
-    gpio_enable(Button1, GPIO_INPUT);
+    gpio_enable(button1, GPIO_INPUT);
     relay1_write(state1);
 }
 
@@ -149,7 +149,7 @@ void button1_init() {
 // ----------------------------------------------------------   Logica boton 2   -----------------------------------------------------
 
 void button2_init() {
-    gpio_enable(Button2, GPIO_INPUT);
+    gpio_enable(button2, GPIO_INPUT);
     relay2_write(state2);
 }
 
