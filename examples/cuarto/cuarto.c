@@ -223,7 +223,6 @@ homekit_accessory_t *accessories[] = {
         HOMEKIT_SERVICE(LIGHTBULB, .primary=true, .characteristics=(homekit_characteristic_t*[]){
             HOMEKIT_CHARACTERISTIC(NAME, "Boton"),
             HOMEKIT_CHARACTERISTIC(ON, false,
-            .getter=button1_on_get,
             .setter=button1_on_set
             ),
             NULL
@@ -243,7 +242,6 @@ homekit_accessory_t *accessories[] = {
         HOMEKIT_SERVICE(STATELESS_PROGRAMMABLE_SWITCH, .primary=true, .characteristics=(homekit_characteristic_t*[]){
             HOMEKIT_CHARACTERISTIC(NAME, "Boton"),
             HOMEKIT_CHARACTERISTIC(ON, false,
-            .getter=button2_on_get,
             .setter=button2_on_set
             ),
             NULL
