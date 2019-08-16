@@ -19,8 +19,8 @@
 
 static void wifi_init() {
     struct sdk_station_config wifi_config = {
-        .ssid = WIFI_SSID,
-        .password = WIFI_PASSWORD,
+        .ssid = "Cuarto",
+        .password = "estudios22",
     };
 
     sdk_wifi_set_opmode(STATION_MODE);
