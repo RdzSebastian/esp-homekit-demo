@@ -11,10 +11,15 @@
 #include "wifi.h"
 #include "button.h"
 
+#define Relay1    16    //D0
+
+#define button1   14    //D5
 
 #ifndef BUTTON_PIN
 #error BUTTON_PIN is not specified
 #endif
+
+
 
 
 static void wifi_init() {
@@ -41,19 +46,15 @@ void button_callback(uint8_t gpio, button_event_t event) {
     switch (event) {
         case button_event_single_press:
             printf("single press\n");
-            homekit_characteristic_notify(&button_event, HOMEKIT_UINT8(0));
-            break;
-        case button_event_double_press:
-            printf("double press\n");
-            homekit_characteristic_notify(&button_event, HOMEKIT_UINT8(1));
-            break;
-        case button_event_long_press:
-            printf("long press\n");
-            homekit_characteristic_notify(&button_event, HOMEKIT_UINT8(2));
+            relay1_write(!state1);
             break;
         default:
             printf("unknown button event: %d\n", event);
     }
+}
+
+void relay1_write(bool on) {
+    gpio_write(Relay1, on ? 1 : 0);
 }
 
 
@@ -66,8 +67,8 @@ homekit_accessory_t *accessories[] = {
                 ACCESSORY_INFORMATION,
                 .characteristics=(homekit_characteristic_t*[]) {
                     HOMEKIT_CHARACTERISTIC(NAME, "Button"),
-                    HOMEKIT_CHARACTERISTIC(MANUFACTURER, "HaPK"),
-                    HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "0012345"),
+                    HOMEKIT_CHARACTERISTIC(MANUFACTURER, "Estonianport"),
+                    HOMEKIT_CHARACTERISTIC(SERIAL_NUMBER, "019111111123"),
                     HOMEKIT_CHARACTERISTIC(MODEL, "MyButton"),
                     HOMEKIT_CHARACTERISTIC(FIRMWARE_REVISION, "0.1"),
                     HOMEKIT_CHARACTERISTIC(IDENTIFY, button_identify),
@@ -100,7 +101,7 @@ void user_init(void) {
     uart_set_baud(0, 115200);
 
     wifi_init();
-    if (button_create(BUTTON_PIN, button_callback)) {
+    if (button_create(button1, button_callback)) {
         printf("Failed to initialize button\n");
     }
     homekit_server_init(&config);
