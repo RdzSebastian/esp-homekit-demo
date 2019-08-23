@@ -14,6 +14,7 @@
 #define Relay1    16    //D0
 
 #define button1   14    //D5
+bool state1 = false;
 
 #ifndef BUTTON_PIN
 #error BUTTON_PIN is not specified
