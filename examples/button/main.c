@@ -6,7 +6,6 @@
 #include <FreeRTOS.h>
 #include <task.h>
 
-#include <homekit/homekit.h>
 #include <homekit/characteristics.h>
 #include "wifi.h"
 
