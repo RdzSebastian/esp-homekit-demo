@@ -2,7 +2,6 @@
 #include <espressif/esp_wifi.h>
 #include <espressif/esp_sta.h>
 #include <esp/uart.h>
-#include <ESP8266WiFi.h>
 #include <esp8266.h>
 #include <FreeRTOS.h>
 #include <task.h>
@@ -202,17 +201,4 @@ void user_init(void) {
     relay1_init();
     relay2_init();
     homekit_server_init(&config);
-}
-
-
-void setup()
-{
-	pinMode(button1, INPUT);
-}
-
-void loop() {
-	if (digitalRead(button1))
-	{
-		relay1_write(state1);
-	}
 }
