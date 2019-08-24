@@ -9,7 +9,6 @@
 #include <homekit/homekit.h>
 #include <homekit/characteristics.h>
 #include "wifi.h"
-#include "button.h"
 
 #define Relay1    16    //D0
 #define button1   14    //D5
