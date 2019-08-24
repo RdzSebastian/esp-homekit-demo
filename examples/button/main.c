@@ -12,15 +12,8 @@
 #include "button.h"
 
 #define Relay1    16    //D0
-
 #define button1   14    //D5
 bool state1 = false;
-
-#ifndef BUTTON_PIN
-#error BUTTON_PIN is not specified
-#endif
-
-
 
 
 static void wifi_init() {
@@ -37,21 +30,14 @@ static void wifi_init() {
 
 void button_identify(homekit_value_t _value) {
     printf("Button identify\n");
+    relay1_write(state1);
 }
 
 
 homekit_characteristic_t button_event = HOMEKIT_CHARACTERISTIC_(PROGRAMMABLE_SWITCH_EVENT, 0);
 
-
-void button_callback(uint8_t gpio, button_event_t event) {
-    switch (event) {
-        case button_event_single_press:
-            printf("single press\n");
-            relay1_write(!state1);
-            break;
-        default:
-            printf("unknown button event: %d\n", event);
-    }
+void relay2_init() {
+    gpio_enable(Relay1, GPIO_OUTPUT);
 }
 
 void relay1_write(bool on) {
@@ -102,9 +88,9 @@ void user_init(void) {
     uart_set_baud(0, 115200);
 
     wifi_init();
-    if (button_create(button1, button_callback)) {
-        printf("Failed to initialize button\n");
-    }
+
+    relay2_init();
+
     homekit_server_init(&config);
 }
 
