@@ -2,6 +2,7 @@
 #include <espressif/esp_wifi.h>
 #include <espressif/esp_sta.h>
 #include <esp/uart.h>
+#include <ESP8266WiFi.h>
 #include <esp8266.h>
 #include <FreeRTOS.h>
 #include <task.h>
